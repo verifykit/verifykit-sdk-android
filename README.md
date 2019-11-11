@@ -37,7 +37,7 @@ In your Application file you should initialize VerifyKit. VerifyKit.init() metho
 Application.kt
 ```
   VerifyKit.init(
-            VerifyKitOptions("YOUR API KEY HERE", // Receive from dashboard
+            VerifyKitOptions(
                 isLogEnabled = true,  //  default true
                 verifyKitEnvironment = VerifyKitEnvironment.DEBUG // default DEBUG
             )
