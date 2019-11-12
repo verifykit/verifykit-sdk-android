@@ -3,7 +3,7 @@
 [![Platform](https://img.shields.io/badge/Platforms-ANDROID-4E4E4E.svg?colorA=28a745)](#installation)
 [![](https://jitpack.io/v/org.bitbucket.verifykit/verifykit-android.svg)](https://jitpack.io/#org.bitbucket.verifykit/verifykit-android)
 [![API](https://img.shields.io/badge/API-14%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=14)
-
+![License](https://img.shields.io/badge/License-MIT-red.svg)
 
 VerifyKit is the next generation phone number validation system. Users can easily verify their phone numbers without the need of entering phone number or a pin code.
 ## Installation
