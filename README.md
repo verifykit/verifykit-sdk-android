@@ -10,13 +10,13 @@ VerifyKit is the next generation phone number validation system. Users can easil
 
 Add it to your app build.gradle at the end of repositories:
 
-```bash
+```groovy
 implementation 'org.bitbucket.verifykit:verifykit-android:${lastVersion}'
 ```
 
 Add it to your root build.gradle at the end of repositories:
 
-```bash
+```groovy
 allprojects {
   repositories {
     ...
@@ -35,7 +35,7 @@ Minimum SDK Version is  api 14
 In your Application file you should initialize VerifyKit. VerifyKit.init() method needs VerifyKitOptions object. 
 
 Application.kt
-```
+```kotlin
   VerifyKit.init(
             VerifyKitOptions(
                 isLogEnabled = true,  //  default true
@@ -48,7 +48,7 @@ Application.kt
 You can call VerifyKit.startVerification(this) method from your Activity or Fragment. 
 
 SampleActivity.kt
-```
+```kotlin
  VerifyKit.startVerification(this, object : VerifyCompleteListener {
             override fun onSuccess(sessionId: String) {
               // TODO operate SUCCESS process
@@ -61,7 +61,7 @@ SampleActivity.kt
 ```
 
 You can get the result via VerifyCompleteListener interface from your activity or fragment.
-```
+```kotlin
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         VerifyKit.onActivityResult(requestCode, resultCode, data)
@@ -74,7 +74,7 @@ There may be a case when user chooses a third party messaging app for validation
 To fix this, we have a method to check interrupted session status.
 
 
-```
+```kotlin
 VerifyKit.checkInterruptedSession(applicationContext, object : VerifyCompleteListener {
             override fun onSuccess(sessionId: String) {
                 // sessionId
