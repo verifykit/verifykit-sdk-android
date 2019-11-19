@@ -115,10 +115,6 @@ Add the following meta-data elements, an activity for VerifyKit and intent filte
                     android:scheme="https" />
 		<!--This code is optional-->
 	</intent-filter>
-	<intent-filter>
-		<action android:name="intent.restart.action" />
-		<category android:name="android.intent.category.DEFAULT" />
-	</intent-filter>
 </activity>
   
 ```
