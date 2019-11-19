@@ -36,10 +36,15 @@ In your Application file you should initialize VerifyKit. VerifyKit.init() metho
 
 Application.kt
 ```kotlin
-  VerifyKit.init(
+  val theme = VerifyKitTheme(
+            backgroundColor = Color.WHITE,
+            toolbarTitle = getString(R.string.app_name)
+        )
+        VerifyKit.init(
+            this,
             VerifyKitOptions(
-                isLogEnabled = true,  //  default true
-                verifyKitEnvironment = VerifyKitEnvironment.DEBUG // default DEBUG
+                isLogEnabled = true,
+                verifyKitTheme = theme
             )
         )
 
