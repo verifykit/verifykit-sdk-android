@@ -126,9 +126,6 @@ Add the following meta-data elements, an activity for VerifyKit and intent filte
 
 
 
-## Notes:
-
-Before your app release, please change the VerifyKitEnvironment to 'release' instead of 'debug'.
 
 ## Author
 
