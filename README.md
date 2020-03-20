@@ -1,21 +1,27 @@
-# VerifyKit
 
+# VerifyKit
 [![Platform](https://img.shields.io/badge/Platforms-ANDROID-4E4E4E.svg?colorA=28a745)](#installation)
 [![](https://jitpack.io/v/org.bitbucket.verifykit/verifykit-android.svg)](https://jitpack.io/#org.bitbucket.verifykit/verifykit-android)
 [![API](https://img.shields.io/badge/API-14%2B-green.svg?style=flat)](https://android-arsenal.com/api?level=14)
 ![License](https://img.shields.io/badge/License-MIT-red.svg)
 
 VerifyKit is the next generation phone number validation system. Users can easily verify their phone numbers without the need of entering phone number or a pin code.
+## How It Works?
+1. Register your app at https://www.verifykit.com and get your client keys and server key. 
+2. Add VerifyKit SDK to your app
+3. Configure and start VerifyKit SDK
+4. When verification completed, send "sessionId" which VeriyfKit SDK gives you to your backend service
+5. At your server side, get user's phone number from VerifyKit service wtih "serverKey" and sessionId. You can check [Backend Integration](#backend-integration)
+![VerifyKit Flow](images/vk-flow.jpg)
+## Security
+"ServerKey" are used for getting info from VerifyKit service.
+Please keep "ServerKey" safe. Do not include your client's code base.
 ## Installation
-
 Add it to your app build.gradle at the end of repositories:
-
 ```groovy
 implementation 'org.bitbucket.verifykit:verifykit-android:${lastVersion}'
 ```
-
 Add it to your root build.gradle at the end of repositories:
-
 ```groovy
 allprojects {
   repositories {
@@ -24,14 +30,9 @@ allprojects {
   }
 }
 ```
-
 ## Requirements
-
 Minimum SDK Version is  api 14
-
-
 ## Usage
-
 In your Application file you should initialize VerifyKit. VerifyKit.init() method needs VerifyKitOptions object. 
 
 Application.kt
@@ -47,57 +48,43 @@ Application.kt
                 verifyKitTheme = theme
             )
         )
-
 ```
-
-You can call VerifyKit.startVerification(this) method from your Activity or Fragment. 
-
-SampleActivity.kt
+You can call VerifyKit.startVerification(this) method from your Activity or Fragment then get the result via VerifyCompleteListener interface from your Activity or Fragment.
 ```kotlin
  VerifyKit.startVerification(this, object : VerifyCompleteListener {
             override fun onSuccess(sessionId: String) {
               // TODO operate SUCCESS process
             }
-
             override fun onFail(error: VerifyKitError) {
               // TODO operate FAIL process
             }
         })
 ```
 
-You can get the result via VerifyCompleteListener interface from your activity or fragment.
+You must pass the result to VerifyKit.onActivityResult 
 ```kotlin
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         VerifyKit.onActivityResult(requestCode, resultCode, data)
     }
 ```
-
-
 There may be a case when user chooses a third party messaging app for validation, sends a message, but doesn't return to main app and kills it. In that case, that user is verified with VerifyKit but the main app doesn't know it yet.
 
 To fix this, we have a method to check interrupted session status.
-
-
 ```kotlin
 VerifyKit.checkInterruptedSession(applicationContext, object : VerifyCompleteListener {
             override fun onSuccess(sessionId: String) {
                 // sessionId
             }
-
             override fun onFail(error: VerifyKitError) {
                 // error
             }
         })
 ```
-
-
 ## AndroidManifest
-
 Open the /app/manifest/AndroidManifest.xml file.
 
-Add the following meta-data elements, an activity for VerifyKit and intent filter for DeepLink inside your application element:
-
+Add the following meta-data elements, an activity for VerifyKit and intent filter for App Link inside your application element:
 ```xml
 <meta-data
             android:name="com.verifykit.sdk.clientKey"
@@ -109,20 +96,20 @@ Add the following meta-data elements, an activity for VerifyKit and intent filte
             android:name="com.verifykit.sdk.ui.VerificationActivity"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait">
-	<intent-filter>
+	<intent-filter android:autoVerify="true">
 		<action android:name="android.intent.action.VIEW" />
 		<category android:name="android.intent.category.DEFAULT" />
 		<category android:name="android.intent.category.BROWSABLE" />
-		<!--This code is optional-->
 		<data
                     android:host="your_deep_link_url"
                     android:pathPattern="your_deep_link_pattern"
                     android:scheme="https" />
-		<!--This code is optional-->
 	</intent-filter>
 </activity>
-  
 ```
+An Android App Link is a deep link based on your website URL that has been verified to belong to your website. So clicking one of these immediately opens your app if it's installed—the disambiguation dialog does not appear. Though the user may later change their preference for handling these links.
+For verifying your App Link see 
+[document](https://developer.android.com/training/app-links/verify-site-associations)
 
 
 
