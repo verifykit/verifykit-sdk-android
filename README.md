@@ -111,8 +111,60 @@ An Android App Link is a deep link based on your website URL that has been verif
 For verifying your App Link see 
 [document](https://developer.android.com/training/app-links/verify-site-associations)
 
+## Backend Integration
 
+Depending on the language you use in your backend service, you can use one of the following options.
 
+You can use our [php-sdk](https://github.com/verifykit/verifykit-sdk-php/blob/master/README.md) like this; 
+
+```php
+$vfk = new \VerifyKit\VerifyKit($serverKey);
+
+/** @var \VerifyKit\Entity\Response $result */
+$result = $vfk->getResult($sessionId);
+
+if ($result->isSuccess()) {
+    echo "Phone number : " . $result->getPhoneNumber() .
+        ", Validation Type : " . $result->getValidationType() .
+        ", Validation Date : " . $result->getValidationDate()->format('Y-m-d H:i:s') . PHP_EOL;
+} else {
+    echo "Error message : " . $result->getErrorMessage() . ", error code : " . $result->getErrorCode() . PHP_EOL;
+}
+```
+
+You can use our [python-sdk](https://github.com/verifykit/verifykit-sdk-python/blob/master/README.md) like this; 
+
+```python
+
+from VerifyKit import Verify
+
+verify = Verify(server_key="{SERVER-KEY}")
+verify.validation(session_id='{SESSION-ID}')
+
+if verify.is_valid:
+    #Validation success.
+    print(verify.response())
+
+elif verify.is_valid == False:
+    #Validation fail.
+    print(verify.response())
+ 
+```
+
+Or you can use curl request like this;
+
+```bash
+curl --location --request POST 'https://api.verifykit.com/v1.0/result' \
+--header 'X-Vfk-Server-Key:{SERVER-KEY}' \
+--header 'Content-Type: application/json' \
+--form 'sessionId={{SESSION-ID}}’
+```
+
+---
+
+## Support
+
+If you have any questions or requests, feel free to [create an issue](https://github.com/verifykit/verifykit-sdk-android/issues).
 
 ## Author
 
