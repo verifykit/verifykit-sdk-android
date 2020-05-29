@@ -72,7 +72,7 @@ There may be a case when user chooses a third party messaging app for validation
 
 To fix this, we have a method to check interrupted session status.
 ```kotlin
-VerifyKit.checkInterruptedSession(applicationContext, object : VerifyCompleteListener {
+VerifyKit.checkInterruptedSession(object : VerifyCompleteListener {
             override fun onSuccess(sessionId: String) {
                 // sessionId
             }
