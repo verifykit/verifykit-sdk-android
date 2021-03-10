@@ -113,7 +113,7 @@ For verifying your App Link see
 
 ## ProGuard
 ```
--keep class com.verifykit.sdk.** { *; }
+-keep class com.verifykit.sdk.core** { *; }
 ```
 
 ## Backend Integration
