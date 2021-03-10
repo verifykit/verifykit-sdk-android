@@ -111,6 +111,11 @@ An Android App Link is a deep link based on your website URL that has been verif
 For verifying your App Link see 
 [document](https://developer.android.com/training/app-links/verify-site-associations)
 
+## ProGuard
+```
+-keep class com.verifykit.sdk.** { *; }
+```
+
 ## Backend Integration
 
 Depending on the language you use in your backend service, you can use one of the following options.
