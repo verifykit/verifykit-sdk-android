@@ -31,15 +31,14 @@ allprojects {
 }
 ```
 ## Requirements
-Minimum SDK Version is  api 14
+Minimum SDK Version is  api 16
 ## Usage
 In your Application file you should initialize VerifyKit. VerifyKit.init() method needs VerifyKitOptions object. 
 
 Application.kt
 ```kotlin
   val theme = VerifyKitTheme(
-            backgroundColor = Color.WHITE,
-            toolbarTitle = getString(R.string.app_name)
+            backgroundColor = Color.WHITE
         )
         VerifyKit.init(
             this,
