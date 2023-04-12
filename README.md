@@ -1,4 +1,10 @@
 
+
+
+
+
+
+
 # VerifyKit
 [![Platform](https://img.shields.io/badge/Platforms-ANDROID-4E4E4E.svg?colorA=28a745)](#installation)
 [![](https://jitpack.io/v/org.bitbucket.verifykit/verifykit-android.svg)](https://jitpack.io/#org.bitbucket.verifykit/verifykit-android)
@@ -58,6 +64,23 @@ You can call VerifyKit.startVerification(this) method from your Activity or Frag
               // TODO operate FAIL process
             }
         })
+```
+**Optional**
+You can pass user phone number to VerifyKit with  `startVerification` method. In this way VerifyKit doesn't ask phone number to user
+```kotlin
+ VerifyKit.startVerification(  
+    activity = this,  
+    countryPhoneCode = "+90",
+    phoneNumber = "5555555555",  
+    mCompleteListener = object : VerifyCompleteListener {  
+        override fun onSuccess(sessionId: String) {  
+            // TODO operate SUCCESS process  
+	  }  
+  
+        override fun onFail(error: VerifyKitError) {  
+            // TODO operate FAIL process  
+	  }  
+    })
 ```
 
 You must pass the result to VerifyKit.onActivityResult 
