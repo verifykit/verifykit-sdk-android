@@ -82,14 +82,8 @@ You can pass user phone number to VerifyKit with  `startVerification` method. In
 	  }  
     })
 ```
+**VerifyKit.checkInterruptedSession**
 
-You must pass the result to VerifyKit.onActivityResult 
-```kotlin
-  override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        VerifyKit.onActivityResult(requestCode, resultCode, data)
-    }
-```
 There may be a case when user chooses a third party messaging app for validation, sends a message, but doesn't return to main app and kills it. In that case, that user is verified with VerifyKit but the main app doesn't know it yet.
 
 To fix this, we have a method to check interrupted session status.
